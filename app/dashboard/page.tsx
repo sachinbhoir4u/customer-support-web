@@ -5,28 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui_
 const modules = [
   {
     title: "Inbox",
-    description: "Unified multichannel inbox for all customer messages",
+    description: "Unified inbox for all customer messages",
     href: "/dashboard/inbox",
   },
   {
     title: "Tickets",
     description: "Manage and track customer support tickets",
     href: "/dashboard/tickets",
-  },
-  {
-    title: "Knowledge Base",
-    description: "Create and manage support documentation",
-    href: "/dashboard/knowledge-base",
-  },
-  {
-    title: "Chatbot",
-    description: "Build and manage AI-powered chatbots",
-    href: "/dashboard/chatbot",
-  },
-  {
-    title: "Analytics",
-    description: "View metrics and performance insights",
-    href: "/dashboard/analytics",
   },
 ]
 
@@ -41,13 +26,13 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {modules.map((module) => (
-            <Card key={module.href} className="hover:border-primary transition-colors cursor-pointer">
+            <Card key={module.href} className="hover:border-primary transition-colors cursor-pointer border-gray-300 hover:shadow-lg hover:scale-101">
               <CardHeader>
                 <CardTitle>{module.title}</CardTitle>
                 <CardDescription>{module.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button asChild className="w-full">
+                <Button variant="solid" asChild className="w-full">
                   <Link href={module.href}>Access Module</Link>
                 </Button>
               </CardContent>
