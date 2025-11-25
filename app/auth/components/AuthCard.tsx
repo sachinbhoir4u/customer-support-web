@@ -1,9 +1,9 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../ui_components/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui_components/card"
 import AuthToggle from "./AuthToggle"
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
 import { AnimatePresence } from "framer-motion"
-import { Button } from "../../ui_components/button"
+import { Button } from "@/ui_components/button"
 
 interface AuthCardProps {
   isLogin: boolean
@@ -14,7 +14,7 @@ export default function AuthCard({ isLogin, setIsLogin }: AuthCardProps) {
   return (
     <div className="w-full max-w-md mx-auto">
       <Card className="border-0 shadow-2xl backdrop-blur-xl bg-white/90 dark:bg-gray-900/90">
-        <CardHeader className="space-y-6 pb-4">
+        <CardHeader className="space-y-6 ">
           <AuthToggle isLogin={isLogin} setIsLogin={setIsLogin} />
           <div className="text-center space-y-2">
             <CardTitle className="text-2xl">
@@ -22,8 +22,8 @@ export default function AuthCard({ isLogin, setIsLogin }: AuthCardProps) {
             </CardTitle>
             <CardDescription>
               {isLogin
-                ? "Enter your credentials to access your account"
-                : "Start your journey with SupportAI today"}
+                ? "Enter your credentials to access your account" : ""}
+                {/* : "Start your journey with SupportAI today"} */}
             </CardDescription>
           </div>
         </CardHeader>
