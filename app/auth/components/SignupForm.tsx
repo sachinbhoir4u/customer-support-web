@@ -2,29 +2,49 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Button } from "../../ui_components/button"
-import { Input } from "../../ui_components/input"
-import { Label } from "../../ui_components/label"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+import { Button } from "@/ui_components/button"
+import { Input } from "@/ui_components/input"
+import { Label } from "@/ui_components/label"
+import { Eye, EyeOff } from "lucide-react"
 
-export default function SignupForm() {
-  const [loading, setLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+// Stronger password rules
+const signupSchema = z
+  .object({
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    email: z.string().email("Invalid email address"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+      .regex(/[0-9]/, "Password must contain at least one number"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+type SignupFormData = z.infer<typeof signupSchema>
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!")
-      return
-    }
+export default function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignupFormData>({
+    resolver: zodResolver(signupSchema),
+  })
+
+  const onSubmit = (data: SignupFormData) => {
+    console.log("Signup:", data)
     setLoading(true)
     setTimeout(() => setLoading(false), 1500)
   }
@@ -35,56 +55,63 @@ export default function SignupForm() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      onSubmit={handleSubmit}
-      className="space-y-3"
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-4"
     >
       <div className="space-y-2">
         <Label htmlFor="name">Full Name</Label>
-        <Input
-          id="name"
-          name="name"
-          placeholder="John Doe"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
+        <Input id="name" placeholder="John Doe" {...register("name")} />
+        {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
       </div>
+
       <div className="space-y-2">
         <Label htmlFor="signup-email">Email</Label>
-        <Input
-          id="signup-email"
-          name="email"
-          type="email"
-          placeholder="you@example.com"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+        <Input id="signup-email" type="email" placeholder="you@example.com" {...register("email")} />
+        {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
       </div>
+
       <div className="space-y-2">
         <Label htmlFor="signup-password">Password</Label>
-        <Input
-          id="signup-password"
-          name="password"
-          type="password"
-          placeholder="••••••••"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+        <div className="relative">
+          <Input
+            id="signup-password"
+            type={showPassword ? "text" : "password"}
+            placeholder="••••••••"
+            {...register("password")}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-3 text-muted-foreground hover:text-foreground"
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
+        {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
       </div>
+
       <div className="space-y-2">
         <Label htmlFor="confirm-password">Confirm Password</Label>
-        <Input
-          id="confirm-password"
-          name="confirmPassword"
-          type="password"
-          placeholder="••••••••"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-        />
+        <div className="relative">
+          <Input
+            id="confirm-password"
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="••••••••"
+            {...register("confirmPassword")}
+          />
+          <button
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            className="absolute right-3 top-3 text-muted-foreground hover:text-foreground"
+          >
+            {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
+        {errors.confirmPassword && (
+          <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
+        )}
       </div>
+
       <Button variant="solid" type="submit" className="w-full" size="lg" disabled={loading}>
         {loading ? "Creating account..." : "Create Account"}
       </Button>
