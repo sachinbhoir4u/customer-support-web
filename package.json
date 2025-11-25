@@ -2,6 +2,7 @@
   "name": "customer-support-web",
   "version": "0.1.0",
   "private": true,
+  "author": "Sachin Bhoir <sachinbhoir4u>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,8 +10,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",
+    "framer-motion": "^12.23.24",
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
