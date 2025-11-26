@@ -3,7 +3,7 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"   // ← Add this
+import { useRouter } from "next/navigation" 
 import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -27,7 +27,7 @@ type LoginFormData = z.infer<typeof loginSchema>
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const router = useRouter()   // ← Add this
+  const router = useRouter()
 
   const {
     register,

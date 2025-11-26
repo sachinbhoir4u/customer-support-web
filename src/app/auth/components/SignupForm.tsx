@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation" 
 import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -9,6 +10,7 @@ import { Button } from "@/components/button"
 import { Input } from "@/components/input"
 import { Label } from "@/components/label"
 import { Eye, EyeOff } from "lucide-react"
+import { Loader } from "@/components/Loader"
 
 // Stronger password rules
 const signupSchema = z
@@ -34,6 +36,7 @@ export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   const {
     register,
@@ -43,78 +46,84 @@ export default function SignupForm() {
     resolver: zodResolver(signupSchema),
   })
 
-  const onSubmit = (data: SignupFormData) => {
+  const onSubmit = async (data: SignupFormData) => {
     console.log("Signup:", data)
     setLoading(true)
-    setTimeout(() => setLoading(false), 1500)
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    setLoading(false)
+    router.push("/dashboard")
   }
 
   return (
-    <motion.form
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.3 }}
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4"
-    >
-      <div className="space-y-2">
-        <Label htmlFor="name">Full Name</Label>
-        <Input id="name" placeholder="John Doe" {...register("name")} />
-        {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="signup-email">Email</Label>
-        <Input id="signup-email" type="email" placeholder="you@example.com" {...register("email")} />
-        {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="signup-password">Password</Label>
-        <div className="relative">
-          <Input
-            id="signup-password"
-            type={showPassword ? "text" : "password"}
-            placeholder="••••••••"
-            {...register("password")}
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-2 text-muted-foreground hover:text-foreground"
-          >
-            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-          </button>
+    <>
+      {loading && <Loader label="Creating account..." /> }
+      <motion.form
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.3 }}
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4"
+      >
+        <div className="space-y-2">
+          <Label htmlFor="name">Full Name</Label>
+          <Input id="name" placeholder="John Doe" {...register("name")} />
+          {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
         </div>
-        {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
-      </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="confirm-password">Confirm Password</Label>
-        <div className="relative">
-          <Input
-            id="confirm-password"
-            type={showConfirmPassword ? "text" : "password"}
-            placeholder="••••••••"
-            {...register("confirmPassword")}
-          />
-          <button
-            type="button"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute right-3 top-2 text-muted-foreground hover:text-foreground"
-          >
-            {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-          </button>
+        <div className="space-y-2">
+          <Label htmlFor="signup-email">Email</Label>
+          <Input id="signup-email" type="email" placeholder="you@example.com" {...register("email")} />
+          {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
         </div>
-        {errors.confirmPassword && (
-          <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
-        )}
-      </div>
 
-      <Button variant="solid" type="submit" className="w-full" size="lg" disabled={loading}>
-        {loading ? "Creating account..." : "Create Account"}
-      </Button>
-    </motion.form>
+        <div className="space-y-2">
+          <Label htmlFor="signup-password">Password</Label>
+          <div className="relative">
+            <Input
+              id="signup-password"
+              type={showPassword ? "text" : "password"}
+              placeholder="••••••••"
+              {...register("password")}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-2 text-muted-foreground hover:text-foreground"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
+          {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="confirm-password">Confirm Password</Label>
+          <div className="relative">
+            <Input
+              id="confirm-password"
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="••••••••"
+              {...register("confirmPassword")}
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-3 top-2 text-muted-foreground hover:text-foreground"
+            >
+              {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
+          {errors.confirmPassword && (
+            <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
+          )}
+        </div>
+
+        <Button variant="solid" type="submit" className="w-full" size="lg" disabled={loading}>
+          {loading ? "Creating account..." : "Create Account"}
+        </Button>
+      </motion.form>
+    </>
   )
 }
