@@ -4,7 +4,7 @@ import SidebarNav from "./SidebarNav"
 import { Button } from "@/components/button"
 import Link from "next/link"
 import { Settings, LogOut } from "lucide-react"
-import { useSidebar } from "./SidebarContext"
+import { useSidebar } from "@/context/SidebarContext"
 import { useRouter } from "next/navigation"
 // import { signOut } from "next-auth/react";
 import { useLoading } from "@/context/LoadingContext"
@@ -31,7 +31,7 @@ export function Sidebar() {
       } bg-sidebar border-r border-white transition-all duration-300 ease-in-out flex flex-col overflow-hidden `}
     >
       <div className="p-5 h-16 bg-white border-b border-gray-300">
-        <h1 className="text-xl font-bold text-sidebar-foreground">Customer Support</h1>
+        <Link className="text-xl font-bold text-sidebar-foreground" href={"/dashboard"}>Customer Support</Link>
       </div>
       <SidebarNav sidebarOpen={isOpen} />
       {/* <div className="border-t p-4 space-y-2 border-white"> */}

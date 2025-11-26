@@ -17,7 +17,7 @@ const modules = [
 
 export default function DashboardPage() {
   return (
-    <main className="p-8">
+    <main className="p-4">
       <div className="max-w-6xl mx-auto space-y-8">
         <div>
           <h1 className="text-3xl font-bold">Dashboard</h1>
@@ -26,7 +26,7 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {modules.map((module) => (
-            <Card key={module.href} className="hover:border-primary transition-colors cursor-pointer border-gray-300 hover:shadow-lg hover:scale-101">
+            <Card key={module.href} className="hover:border-primary transition-colors cursor-pointer border-gray-300 hover:shadow-lg hover:scale-101 bg-white">
               <CardHeader>
                 <CardTitle>{module.title}</CardTitle>
                 <CardDescription>{module.description}</CardDescription>

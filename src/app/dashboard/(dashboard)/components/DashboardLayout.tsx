@@ -2,7 +2,7 @@
 
 import { Sidebar } from "./subcomponents/Sidebar"
 import { Header } from "./subcomponents/Header"
-import { SidebarProvider } from "./subcomponents/SidebarContext" 
+import { SidebarProvider } from "@/context/SidebarContext" 
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (

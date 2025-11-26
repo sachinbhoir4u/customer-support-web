@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/button"
 import { Menu, X } from "lucide-react"
-import { useSidebar } from "./SidebarContext"  
+import { useSidebar } from "@/context/SidebarContext"  
 
 export function Header() {
   const { isOpen, toggle } = useSidebar() 
