@@ -82,11 +82,11 @@ export default function TicketsPage() {
   const inProgressCount = mockTickets.filter((t) => t.status === "in-progress").length
 
   return (
-    <div className="p-6">
+    <div className="">
       <div className="max-w-7xl mx-auto space-y-6">
         <TicketsHeader openCount={openCount} inProgressCount={inProgressCount} />
 
-        <Card className="p-4">
+        <Card className="p-4 bg-white border-gray-100">
           <TicketsFilters
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
@@ -95,7 +95,7 @@ export default function TicketsPage() {
           />
         </Card>
 
-        <Card>
+        <Card className="bg-white border-gray-100 px-0 py-0">
           {filteredTickets.length > 0 ? (
             <TicketsTable tickets={filteredTickets} />
           ) : (

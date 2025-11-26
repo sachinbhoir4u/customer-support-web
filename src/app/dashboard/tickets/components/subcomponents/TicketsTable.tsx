@@ -19,7 +19,7 @@ export function TicketsTable({ tickets }: TicketsTableProps) {
     <div className="overflow-x-auto">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-border">
+          <tr className="border-b border-border border-gray-200">
             <th className="text-left p-4 font-semibold text-muted-foreground">Ticket ID</th>
             <th className="text-left p-4 font-semibold text-muted-foreground">Title</th>
             <th className="text-left p-4 font-semibold text-muted-foreground">Customer</th>

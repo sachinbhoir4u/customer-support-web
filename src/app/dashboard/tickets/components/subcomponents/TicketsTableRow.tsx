@@ -29,7 +29,7 @@ interface TicketsTableRowProps {
 
 export function TicketsTableRow({ ticket }: TicketsTableRowProps) {
   return (
-    <tr className="border-b border-border hover:bg-muted/50 transition-colors cursor-pointer">
+    <tr className="border-b border-gray-200 hover:bg-muted/50 transition-colors cursor-pointer">
       <td className="p-4">
         <Link href={`/tickets/${ticket.id}`} className="font-medium text-primary hover:underline">
           {ticket.id}

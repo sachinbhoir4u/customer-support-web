@@ -8,12 +8,12 @@ export function Header() {
   const { isOpen, toggle } = useSidebar() 
 
   return (
-    <header className="h-16 border-b border-border bg-card flex items-center px-6 border-gray-300">
+    <header className="h-16 bg-white flex items-center px-6 border-b border-gray-300">
       <Button
         variant="ghost"
         size="icon"
         onClick={toggle}
-        className="hover:bg-muted rounded-lg transition-colors"
+        className="hover:bg-muted rounded-lg transition-colors cursor-pointer"
       >
         {isOpen ? <X size={20} /> : <Menu size={20} />}
       </Button>
