@@ -4,16 +4,23 @@ import SidebarNav from "./SidebarNav"
 import { Button } from "@/components/button"
 import Link from "next/link"
 import { Settings, LogOut } from "lucide-react"
-import { useSidebar } from "./SidebarContext" 
-import { useRouter } from "next/navigation";
+import { useSidebar } from "./SidebarContext"
+import { useRouter } from "next/navigation"
 // import { signOut } from "next-auth/react";
+import { useLoading } from "@/context/LoadingContext"
 
 export function Sidebar() {
-  const { isOpen } = useSidebar() 
+  const { isOpen } = useSidebar();
   const router = useRouter();
+  const { showLoader, hideLoader } = useLoading();
   const handleLogout = async () => {
+    showLoader()
     // await signOut({ redirect: false });
-    router.push("/auth");
+    setTimeout(() => {
+      router.push("/auth");
+      hideLoader();
+    }, 1000);
+    // router.push("/auth");
     router.refresh();
   }
 

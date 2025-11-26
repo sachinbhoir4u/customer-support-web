@@ -14,6 +14,7 @@ import { Label } from "@/components/label"
 import { Eye, EyeOff } from "lucide-react"
 import { GoogleLogin } from "@react-oauth/google"
 import type { CredentialResponse } from "@react-oauth/google"
+import { Loader } from "@/components/Loader"
 
 // Zod schema
 const loginSchema = z.object({
@@ -51,6 +52,7 @@ export default function LoginForm() {
 
   // Google Login Success
   const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
+    setLoading(true)
     const token = credentialResponse.credential
     if (!token) return
 
@@ -60,75 +62,79 @@ export default function LoginForm() {
     // await fetch("/api/auth/google", { method: "POST", body: JSON.stringify({ token }) })
 
     // Redirect on success
+    setLoading(false)
     router.push("/dashboard")
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.3 }}
-      className="space-y-6"
-    >
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Your existing form fields */}
-        <div className="space-y-2">
-          <Label htmlFor="login-email">Email</Label>
-          <Input
-            id="login-email"
-            type="email"
-            placeholder="you@example.com"
-            {...register("email")}
-          />
-          {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="login-password">Password</Label>
-          <div className="relative">
+    <>
+      {loading && <Loader label="Signing in..." /> }
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.3 }}
+        className="space-y-6"
+      >
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Your existing form fields */}
+          <div className="space-y-2">
+            <Label htmlFor="login-email">Email</Label>
             <Input
-              id="login-password"
-              type={showPassword ? "text" : "password"}
-              placeholder="••••••••"
-              {...register("password")}
+              id="login-email"
+              type="email"
+              placeholder="you@example.com"
+              {...register("email")}
             />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-2 text-muted-foreground hover:text-foreground"
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
+            {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
           </div>
-          {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+
+          <div className="space-y-2">
+            <Label htmlFor="login-password">Password</Label>
+            <div className="relative">
+              <Input
+                id="login-password"
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                {...register("password")}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-2 text-muted-foreground hover:text-foreground"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+            {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+          </div>
+
+          <Button variant="solid" type="submit" className="w-full" size="lg" disabled={loading}>
+            {loading ? "Signing in..." : "Sign In"}
+          </Button>
+        </form>
+
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+          </div>
         </div>
 
-        <Button variant="solid" type="submit" className="w-full" size="lg" disabled={loading}>
-          {loading ? "Signing in..." : "Sign In"}
-        </Button>
-      </form>
-
-      <div className="relative my-6">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
+        <div className="flex justify-center w-full">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => console.log("Google Login Failed")}
+            useOneTap
+            theme="outline"
+            size="large"
+            text="continue_with"
+            width="350"
+          />
         </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-        </div>
-      </div>
-
-      <div className="flex justify-center w-full">
-        <GoogleLogin
-          onSuccess={handleGoogleSuccess}
-          onError={() => console.log("Google Login Failed")}
-          useOneTap
-          theme="outline"
-          size="large"
-          text="continue_with"
-          width="350"
-        />
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   )
 }

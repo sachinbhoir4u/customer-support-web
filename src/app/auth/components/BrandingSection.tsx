@@ -12,11 +12,11 @@ export function BrandingSection() {
         Customer Support
       </h1>
       <div className="space-y-3">
-        <p className="text-xl text-muted-foreground">
+        {/* <p className="text-xl text-muted-foreground">
           AI-powered customer support platform
-        </p>
+        </p> */}
         <p className="text-lg text-muted-foreground">
-          Ticketing • Knowledge Base • Smart Chatbot
+          Ticketing • Multichannel Inbox • Many more...
         </p>
       </div>
       {/* <div className="flex justify-center lg:justify-start gap-4 pt-4">

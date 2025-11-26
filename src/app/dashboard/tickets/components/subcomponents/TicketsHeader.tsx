@@ -10,9 +10,9 @@ interface TicketsHeaderProps {
 export function TicketsHeader({ openCount, inProgressCount }: TicketsHeaderProps) {
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <h1 className="text-3xl font-bold">Tickets</h1>
-        <p className="text-muted-foreground pl-5 pt-2">
+      <div className="flex items-center gap-8">
+        <h1 className="text-2xl font-bold">Tickets</h1>
+        <p className="text-muted-foreground pt-1">
           {openCount} open, {inProgressCount} in progress
         </p>
       </div>
