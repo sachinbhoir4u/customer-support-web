@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Inbox, Ticket } from "lucide-react";
+import { Inbox, Ticket, ChartArea } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
     { label: "Inbox", href: "/dashboard/inbox", icon: Inbox },
     { label: "Tickets", href: "/dashboard/tickets", icon: Ticket },
+    { label: "Analytics", href: "/dashboard/analytics", icon: ChartArea },
 ]
 
 export default function SidebarNav({ sidebarOpen }: { sidebarOpen: boolean }) {

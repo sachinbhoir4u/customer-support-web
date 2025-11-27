@@ -16,9 +16,9 @@ export function TicketsHeader({ openCount, inProgressCount }: TicketsHeaderProps
           {openCount} open, {inProgressCount} in progress
         </p>
       </div>
-      <Button asChild>
-        <Link href="/tickets/new">
-          <Plus size={18} className="mr-2" />
+      <Button variant="solid" asChild>
+        <Link href="/dashboard/tickets/new">
+          <Plus size={18} className="mr-0 text-white " />
           New Ticket
         </Link>
       </Button>
