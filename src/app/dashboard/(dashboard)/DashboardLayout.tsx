@@ -1,7 +1,7 @@
 "use client"
 
-import { Sidebar } from "./subcomponents/Sidebar"
-import { Header } from "./subcomponents/Header"
+import { Sidebar } from "./components/Sidebar"
+import { Header } from "./components/Header"
 import { SidebarProvider } from "@/context/SidebarContext" 
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

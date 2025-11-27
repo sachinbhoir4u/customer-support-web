@@ -1,4 +1,4 @@
-import DashboardLayout from "./components/DashboardLayout"
+import DashboardLayout from "./DashboardLayout"
 
 export default function DashboardEntry({ children }: { children: React.ReactNode }) {
   return <DashboardLayout>{children}</DashboardLayout>

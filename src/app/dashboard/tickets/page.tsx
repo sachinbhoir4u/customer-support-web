@@ -1,7 +1,7 @@
-import TicketsPage from "./components/TicketsPage"
+import TicketsLayout from "./TicketsLayout"
 
 export default function Page() {
-  return <TicketsPage />
+  return <TicketsLayout />
 }
 
 export const metadata = {

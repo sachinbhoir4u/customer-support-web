@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { Card } from "@/components/card";
-import { TicketsHeader } from "./subcomponents/TicketsHeader";
-import { TicketsFilters } from "./subcomponents/TicketsFilters";
-import { TicketsTable } from "./subcomponents/TicketsTable";
-import { TicketsEmptyState } from "./subcomponents/TicketsEmptyState";
+import { TicketsHeader } from "./components/TicketsHeader";
+import { TicketsFilters } from "./components/TicketsFilters";
+import { TicketsTable } from "./components/TicketsTable";
+import { TicketsEmptyState } from "./components/TicketsEmptyState";
 
 const mockTickets = [
   {
@@ -64,7 +64,7 @@ const mockTickets = [
     replies: 0,
   },
 ]
-export default function TicketsPage() {
+export default function TicketsLayout() {
   const [searchQuery, setSearchQuery] = useState("")
   const [statusFilter, setStatusFilter] = useState<string | null>(null)
 
