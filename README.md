@@ -1,4 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Customer Support Platform
+Next-Generation, Multi-Tenant, Customer Support System
+
+A modern customer support platform combining ticketing, multichannel inbox, (Future Development- AI copilots, knowledge base automation, chatbot builder, workflow automation, analytics,) and more — built for enterprise scale and SaaS multi-tenancy.
+
+🌐 Live Demo (Netlify Deployment)
+
+The project is deployed on Netlify for preview and testing: (Only UI)
+
+🔗 Live URL: https://cust-support-app.netlify.app/
+
+(Replace with your actual link once deployed)
+
+🌟 Key Capabilities
+🔥 Core Modules (v1–v2)
+A. Authentication & User Management
+
+Email/password login
+
+MFA/2FA
+
+SSO (Google, Microsoft, Slack, GitHub)
+
+Role-based access control (RBAC)
+
+Organization / tenant switching
+
+API keys for integrations
+
+Session/device management
+
+🔥 B. Multichannel Inbox
+
+Unified inbox for all communication channels:
+
+Website chat widget
+
+Email
+
+WhatsApp
+
+Instagram DM
+
+Facebook Messenger
+
+X (Twitter)
+
+
+🔥 C. Ticketing System
+
+Core: Create/manage tickets
+
+Status: Open/Pending/Resolved/Closed
+
+Priorities & Tags
+
+Departments
+
+SLA tracking
+
+Canned responses
+
+Ticket merging
+
+
+🔮 Future Roadmap (v3–v10)
+
+Automated knowledge base updates
+
+Voice AI support (callbots)
+
+CRM integrations
+
+AI Chatbot Builder
+
+
+🏗️ Tech Stack
+Frontend
+
+React (Latest)
+
+TypeScript
+
+Next.js or Vite
+
+Redux Toolkit (global state: theme, user, settings)
+
+TanStack Query (server caching)
+
+TailwindCSS
+
+React Hook Form + Zod
+
+React.lazy + Suspense (code splitting)
+
+
+📁 Suggested Folder Structure
+/src
+  /app
+    /auth
+    /dashboard
+    /tickets
+    /settings
+    /chat
+  /components
+    /ui
+    /forms
+    /layout
+  /modules
+    /auth
+    /tickets
+    /inbox
+    /chatbot
+    /knowledge-base
+  /hooks
+  /lib
+  /store (Redux)
+  /services (API + Query)
+  /types
+  /utils
+  /styles
+
 
 ## Getting Started
 
