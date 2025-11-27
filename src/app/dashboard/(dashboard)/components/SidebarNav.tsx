@@ -17,7 +17,7 @@ export default function SidebarNav({ sidebarOpen }: { sidebarOpen: boolean }) {
 
   return (
     // <div className="border mt-4 p-4 border-gray-200 space-y-2 bg-white rounded-lg"></div>
-    <nav className="flex-1 overflow-y-auto p-4 space-y-2 bg-white rounded-br-xl border-r border-b border-gray-300 ">
+    <nav className="flex-1 overflow-y-auto p-4 space-y-2 bg-white rounded-br-xl border-r border-b border-gray-100 ">
       {navItems.map((item) => {
         const Icon = item.icon;
         const isActive = pathname === item.href;

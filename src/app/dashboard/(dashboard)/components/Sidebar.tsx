@@ -35,7 +35,7 @@ export function Sidebar() {
       </div>
       <SidebarNav sidebarOpen={isOpen} />
       {/* <div className="border-t p-4 space-y-2 border-white"> */}
-      <div className="border-t border-r mt-4 p-4 border-gray-300 space-y-2 bg-white rounded-tr-xl">
+      <div className="border-t border-r mt-4 p-4 border-gray-100 space-y-2 bg-white rounded-tr-xl">
         <Button variant="ghost" className="w-full justify-start gap-3" asChild>
           <Link href="/dashboard/settings">
             <Settings size={18} />
