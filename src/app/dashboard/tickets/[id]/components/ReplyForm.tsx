@@ -26,7 +26,7 @@ export function ReplyForm({ onSend }: ReplyFormProps) {
       <CardHeader>
         <CardTitle className="text-base">Add Reply</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 ">
         <textarea
           value={replyText}
           onChange={(e) => setReplyText(e.target.value)}
@@ -49,7 +49,7 @@ export function ReplyForm({ onSend }: ReplyFormProps) {
             <span className="text-sm text-muted-foreground">Internal note (only visible to team)</span>
           </label>
           <Button variant="solid" onClick={handleSendReply} disabled={!replyText.trim()}>
-            <Send size={16} className="mr-2" />
+            <Send size={16} />
             Send Reply
           </Button>
         </div>

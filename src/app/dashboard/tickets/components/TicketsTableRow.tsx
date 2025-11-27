@@ -30,7 +30,7 @@ interface TicketsTableRowProps {
 export function TicketsTableRow({ ticket }: TicketsTableRowProps) {
   const router = useRouter()
   return (
-    <tr onClick={() => router.push(`/dashboard/tickets/${ticket.id}`)} className="border-b border-gray-200 hover:bg-muted/50 transition-colors cursor-pointer">
+    <tr onClick={() => router.push(`/dashboard/tickets/${ticket.id}`)} className="border-b border-gray-200 hover:bg-blue-50 transition-colors cursor-pointer">
       <td className="p-4">{ticket.id}</td>
       <td className="p-4">{ticket.title}</td>
       <td className="p-4 text-sm">{ticket.customer}</td>

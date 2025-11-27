@@ -72,9 +72,14 @@ export default function TicketDetailsLayout() {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-1">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Metadata + Description */}
+        {/* <div className="flex items-center justify-between"> */}
+        <div className="flex items-center">
+            <h1 className="text-xl font-bold">Ticket - {ticket.id}</h1>
+        </div>
+        {/* </div> */}
         <Card className="bg-white border border-gray-100">
           <TicketMetadata
             title={ticket.title}

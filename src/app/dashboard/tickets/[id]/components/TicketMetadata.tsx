@@ -29,7 +29,7 @@ export function TicketMetadata({ title, id, status, priority, customer, email, a
         <div className=" flex items-start justify-between">
             <div>
                 <CardTitle>{title}</CardTitle>
-                <CardDescription className="mt-2">Ticket {id}</CardDescription>
+                {/* <CardDescription className="mt-2">Ticket {id}</CardDescription> */}
             </div>
             <div className="flex gap-2">
             <Badge variant="outline" className={statusColors[status as keyof typeof statusColors]}>
@@ -42,21 +42,21 @@ export function TicketMetadata({ title, id, status, priority, customer, email, a
         </div>
         <div className="grid grid-cols-3 gap-4">
             <div>
-                <p className="text-sm text-muted-foreground">Customer</p>
+                <p className="text-sm text-muted-foreground font-bold">Customer</p>
                 <p className="font-medium">{customer}</p>
                 <p className="text-sm text-muted-foreground">{email}</p>
             </div>
             <div>
-                <p className="text-sm text-muted-foreground">Assigned to</p>
+                <p className="text-sm text-muted-foreground font-bold">Assigned to</p>
                 <p className="font-medium">{assignee}</p>
             </div>
             <div>
-                <p className="text-sm text-muted-foreground">Created</p>
+                <p className="text-sm text-muted-foreground font-bold">Created</p>
                 <p className="font-medium">{created}</p>
             </div>
         </div>
         <div>
-            <p className="text-sm text-muted-foreground mb-2">Description</p>
+            <p className="text-sm text-muted-foreground mb-2 font-bold">Description</p>
             <p className="text-foreground">{description}</p>
         </div>
     </CardContent>

@@ -19,14 +19,14 @@ export function TicketsTable({ tickets }: TicketsTableProps) {
     <div className="overflow-x-auto">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-border border-gray-200">
-            <th className="text-left p-4 font-semibold text-muted-foreground">Ticket ID</th>
+          <tr className="border-b border-gray-200">
+            <th className="text-left p-4 font-semibold text-muted-foreground round-tl-2xl">Ticket ID</th>
             <th className="text-left p-4 font-semibold text-muted-foreground">Title</th>
             <th className="text-left p-4 font-semibold text-muted-foreground">Customer</th>
             <th className="text-left p-4 font-semibold text-muted-foreground">Assignee</th>
             <th className="text-left p-4 font-semibold text-muted-foreground">Status</th>
             <th className="text-left p-4 font-semibold text-muted-foreground">Priority</th>
-            <th className="text-left p-4 font-semibold text-muted-foreground">Updated</th>
+            <th className="text-left p-4 font-semibold text-muted-foreground round-tr-2xl">Updated</th>
           </tr>
         </thead>
         <tbody>
