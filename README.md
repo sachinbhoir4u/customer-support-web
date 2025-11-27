@@ -9,7 +9,7 @@ The project is deployed on Netlify for preview and testing: (Only UI)
 
 🔗 Live URL: https://cust-support-app.netlify.app/
 
-(Replace with your actual link once deployed)
+🔄 Auto-deploy enabled via GitHub
 
 🌟 Key Capabilities
 🔥 Core Modules (v1–v2)
