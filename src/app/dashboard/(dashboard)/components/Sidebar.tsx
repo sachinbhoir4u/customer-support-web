@@ -28,7 +28,7 @@ export function Sidebar() {
     <aside
       className={`${
         isOpen ? "w-64" : "w-0"
-      } bg-sidebar border-r border-white transition-all duration-300 ease-in-out flex flex-col overflow-hidden `}
+      } bg-sidebar transition-all duration-300 ease-in-out flex flex-col overflow-hidden `}
     >
       <div className="p-5 h-16 bg-white border-b border-gray-300">
         <Link className="text-xl font-bold text-sidebar-foreground" href={"/dashboard"}>Customer Support</Link>
