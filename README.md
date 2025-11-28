@@ -1,4 +1,5 @@
-Customer Support Platform
+Customer Support Platform :
+
 Next-Generation, Multi-Tenant, Customer Support System
 
 A modern customer support platform combining ticketing, multichannel inbox, (Future Development- AI copilots, knowledge base automation, chatbot builder, workflow automation, analytics,) and more — built for enterprise scale and SaaS multi-tenancy.
