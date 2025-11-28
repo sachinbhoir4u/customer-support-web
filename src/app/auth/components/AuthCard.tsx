@@ -12,9 +12,9 @@ interface AuthCardProps {
 
 export default function AuthCard({ isLogin, setIsLogin }: AuthCardProps) {
   return (
-    <div className="w-full max-w-md mx-auto">
-      <Card className="border-0 shadow-2xl backdrop-blur-xl bg-white/90 dark:bg-gray-900/90">
-        <CardHeader className="space-y-6 ">
+    <div className="w-full max-w-md mx-auto ">
+      <Card className="shadow-2xl backdrop-blur-xl bg-white/90 dark:bg-gray-900/90 pb-6 pt-0 border border-gray-200">
+        <CardHeader className="space-y-6 p-0">
           <AuthToggle isLogin={isLogin} setIsLogin={setIsLogin} />
           <div className="text-center space-y-2">
             <CardTitle className="text-2xl">
