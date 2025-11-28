@@ -28,6 +28,7 @@ export function TicketsFilters({
             placeholder="Search tickets by ID, title, or customer..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
+            className="pl-10"
           />
         </div>
         <Button variant="outline" size="icon">
