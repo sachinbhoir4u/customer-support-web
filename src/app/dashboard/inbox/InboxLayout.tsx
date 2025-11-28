@@ -37,7 +37,7 @@ const mockMessages = [
     message: "When will the new features be available?",
     timestamp: "3 hours ago",
     channel: "twitter" as const,
-    unread: false,
+    unread: true,
   },
   {
     id: "5",

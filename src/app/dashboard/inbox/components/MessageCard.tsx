@@ -37,7 +37,10 @@ export default function MessageCard({
   return (
     <div
       className={`p-4 border border-gray-300 rounded-lg hover:bg-card/50 transition-colors cursor-pointer ${
-        unread ? "bg-accent/5 border-primary/30" : ""
+        // unread ? "bg-accent/5 border-primary/30" : ""
+        unread 
+          ? "bg-gradient-to-r from-gray-200 to-gray-100/50 border-gray-200 shadow-sm" 
+          : "border-border hover:shadow-sm"
       }`}
     >
       <div className="flex gap-3 items-center">

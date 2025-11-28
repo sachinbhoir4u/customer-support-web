@@ -20,7 +20,7 @@ export function Loader({ size = "md", className, label = "Loading..." }: LoaderP
       <div className="flex flex-col items-center space-y-4">
       <div
         className={cn(
-          "animate-spin rounded-full border-4 border-gray-300 border-t-blue-600",
+          "animate-spin rounded-full border-4 border-gray-300 border-t-black",
           sizeClasses[size],
           className
         )}
