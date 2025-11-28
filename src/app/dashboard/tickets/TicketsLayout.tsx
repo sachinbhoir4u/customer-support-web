@@ -82,7 +82,7 @@ export default function TicketsLayout() {
   const inProgressCount = mockTickets.filter((t) => t.status === "in-progress").length
 
   return (
-    <div className="">
+    <div>
       <div className="max-w-7xl mx-auto space-y-6">
         <TicketsHeader openCount={openCount} inProgressCount={inProgressCount} />
 
