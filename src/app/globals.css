@@ -24,3 +24,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.shadow-inner-br {
+  box-shadow:
+    inset -4px -4px 5px rgba(0, 0, 0, 0.08); 
+}
+
+.shadow-inner-bl {
+  box-shadow:
+    inset 4px -4px 6px rgba(0, 0, 0, 0.08);
+}
