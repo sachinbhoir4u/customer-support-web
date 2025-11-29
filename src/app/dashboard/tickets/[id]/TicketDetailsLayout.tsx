@@ -47,10 +47,10 @@ const mockTicketDetail = {
 
 export default function TicketDetailsLayout() {
   const [ticket, setTicket] = useState(mockTicketDetail)
-  const [isSending, setIsSending] = useState(false)
+  // const [isSending, setIsSending] = useState(false)
 
   const handleSendReply = async (message: string, isInternal: boolean) => {
-    setIsSending(true)
+    // setIsSending(true)
     // Simulate API call
     setTimeout(() => {
       setTicket(prev => ({
@@ -67,7 +67,7 @@ export default function TicketDetailsLayout() {
           },
         ],
       }))
-      setIsSending(false)
+      // setIsSending(false)
     }, 1000)
   }
 

@@ -13,6 +13,11 @@ const modules = [
     description: "Manage and track customer support tickets",
     href: "/dashboard/tickets",
   },
+  {
+    title: "Analytics",
+    description: "View metrics and performance insights",
+    href: "/dashboard/analytics",
+  }
 ]
 
 export default function DashboardPage() {
@@ -26,7 +31,7 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {modules.map((module) => (
-            <Card key={module.href} className="hover:border-primary transition-colors cursor-pointer border-gray-300 hover:shadow-lg hover:scale-101 bg-white">
+            <Card key={module.href} className="hover:border-primary transition-colors cursor-pointer hover:shadow-lg hover:scale-101 bg-white">
               <CardHeader>
                 <CardTitle>{module.title}</CardTitle>
                 <CardDescription>{module.description}</CardDescription>
