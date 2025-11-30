@@ -21,7 +21,7 @@ export function InboxFilters({
   const channels = ["email", "chat", "whatsapp", "twitter"] as const
 
   return (
-    <Card className="p-4 bg-white border border-gray-200">
+    <Card className="p-4 ">
       <div className="space-y-4">
         {/* Search */}
         <div className="flex gap-2">
