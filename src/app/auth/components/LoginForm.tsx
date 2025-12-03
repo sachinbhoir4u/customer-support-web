@@ -1,9 +1,161 @@
 
 
+// "use client"
+
+// import { useState } from "react"
+// import { useRouter } from "next/navigation" 
+// import { motion } from "framer-motion"
+// import { useForm } from "react-hook-form"
+// import { zodResolver } from "@hookform/resolvers/zod"
+// import { z } from "zod"
+// import { Button } from "@/components/button"
+// import { Input } from "@/components/input"
+// import { Label } from "@/components/label"
+// import { Eye, EyeOff } from "lucide-react"
+// import { GoogleLogin } from "@react-oauth/google"
+// import type { CredentialResponse } from "@react-oauth/google"
+// import { Loader } from "@/components/Loader"
+
+// // Zod schema
+// const loginSchema = z.object({
+//   email: z.string().email("Invalid email address"),
+//   password: z.string().min(6, "Password must be at least 6 characters"),
+// })
+
+// type LoginFormData = z.infer<typeof loginSchema>
+
+// export default function LoginForm() {
+//   const [showPassword, setShowPassword] = useState(false)
+//   const [loading, setLoading] = useState(false)
+//   const router = useRouter()
+
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { errors },
+//   } = useForm<LoginFormData>({
+//     resolver: zodResolver(loginSchema),
+//   })
+
+//   // Email/Password Login
+//   const onSubmit = async (data: LoginFormData) => {
+//     setLoading(true)
+    
+//     try {
+//       // Real API call
+//       // const response = await fetch("/api/auth/login", {
+//       //   method: "POST",
+//       //   headers: { "Content-Type": "application/json" },
+//       //   body: JSON.stringify(data)
+//       // })
+      
+//       // if (!response.ok) throw new Error("Login failed")
+      
+//       // Navigate
+//       router.push("/dashboard")
+//       router.refresh()
+      
+//     } catch (error) {
+//       console.error("Login error:", error)
+//       // Show error toast here
+//     } finally {
+//       setTimeout(() => setLoading(false), 800)
+//     }
+//   }
+
+//   // Google Login Success
+//   const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
+//     setLoading(true)
+//     const token = credentialResponse.credential
+//     if (!token) return
+
+//     console.log("Google ID Token:", token)
+
+//     // Send token to your backend here
+//     // await fetch("/api/auth/google", { method: "POST", body: JSON.stringify({ token }) })
+
+//     // Redirect on success
+//     setLoading(false)
+//     router.push("/dashboard")
+//   }
+
+//   return (
+//     <>
+//       {loading && <Loader label="Signing in..." /> }
+//       <motion.div
+//         initial={{ opacity: 0, y: 20 }}
+//         animate={{ opacity: 1, y: 0 }}
+//         exit={{ opacity: 0, y: -20 }}
+//         transition={{ duration: 0.3 }}
+//         className="space-y-6"
+//       >
+//         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+//           {/* Your existing form fields */}
+//           <div className="space-y-2">
+//             <Label htmlFor="login-email">Email</Label>
+//             <Input
+//               id="login-email"
+//               type="email"
+//               placeholder="you@example.com"
+//               {...register("email")}
+//             />
+//             {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+//           </div>
+
+//           <div className="space-y-2">
+//             <Label htmlFor="login-password">Password</Label>
+//             <div className="relative">
+//               <Input
+//                 id="login-password"
+//                 type={showPassword ? "text" : "password"}
+//                 placeholder="••••••••"
+//                 {...register("password")}
+//               />
+//               <button
+//                 type="button"
+//                 onClick={() => setShowPassword(!showPassword)}
+//                 className="absolute right-3 top-2 text-muted-foreground hover:text-foreground"
+//               >
+//                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+//               </button>
+//             </div>
+//             {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+//           </div>
+
+//           <Button variant="solid" type="submit" className="w-full" size="lg" disabled={loading}>
+//             {loading ? "Signing in..." : "Sign In"}
+//           </Button>
+//         </form>
+
+//         <div className="relative my-6">
+//           <div className="absolute inset-0 flex items-center">
+//             <span className="w-full border-t" />
+//           </div>
+//           <div className="relative flex justify-center text-xs uppercase">
+//             <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+//           </div>
+//         </div>
+
+//         <div className="flex justify-center w-full">
+//           <GoogleLogin
+//             onSuccess={handleGoogleSuccess}
+//             onError={() => console.log("Google Login Failed")}
+//             useOneTap
+//             theme="outline"
+//             size="large"
+//             text="continue_with"
+//             width="350"
+//           />
+//         </div>
+//       </motion.div>
+//     </>
+//   )
+// }
+
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation" 
+import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -12,11 +164,14 @@ import { Button } from "@/components/button"
 import { Input } from "@/components/input"
 import { Label } from "@/components/label"
 import { Eye, EyeOff } from "lucide-react"
-import { GoogleLogin } from "@react-oauth/google"
-import type { CredentialResponse } from "@react-oauth/google"
-import { Loader } from "@/components/Loader"
+import { googleLogout } from '@react-oauth/google'
 
-// Zod schema
+// CORRECT IMPORT & TYPE
+import { GoogleLogin, CredentialResponse } from "@react-oauth/google"
+
+import { useLoading } from "@/context/LoadingContext"
+import { useToast } from "@/components/use-toast"
+
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -26,8 +181,10 @@ type LoginFormData = z.infer<typeof loginSchema>
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const { showLoader, hideLoader } = useLoading()
+  const { toast } = useToast()
+  const [forceReauth, setForceReauth] = useState(false);
 
   const {
     register,
@@ -37,104 +194,133 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   })
 
-  // Email/Password Login
   const onSubmit = async (data: LoginFormData) => {
-    console.log("Login:", data)
-    setLoading(true)
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-
-    // Success → redirect
-    setLoading(false)
-    router.push("/dashboard")
+    showLoader()
+    try {
+      // Your API call here
+      router.push("/dashboard")
+      router.refresh()
+    } catch (error: unknown) {
+      toast({
+        variant: "destructive",
+        title: "Login failed",
+        description: error instanceof Error ? error.message : "Something went wrong",
+      })
+    } finally {
+      setTimeout(() => hideLoader(), 800)
+    }
   }
-
-  // Google Login Success
   const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
-    setLoading(true)
-    const token = credentialResponse.credential
-    if (!token) return
+    const { credential } = credentialResponse
+    if (!credential) {
+      toast({
+        variant: "destructive",
+        title: "Google login failed",
+        description: "No credential received",
+      })
+      return
+    }
 
-    console.log("Google ID Token:", token)
+    showLoader()
+    try {
+      // Send token to your backend
+      // await fetch("/api/auth/google", { method: "POST", body: JSON.stringify({ token: credential }) })
 
-    // Optional: Send token to your backend here
-    // await fetch("/api/auth/google", { method: "POST", body: JSON.stringify({ token }) })
+      router.push("/dashboard")
+      router.refresh()
 
-    // Redirect on success
-    setLoading(false)
-    router.push("/dashboard")
+      toast({
+        title: "Welcome!",
+        description: "Signed in with Google successfully",
+      })
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Login failed",
+        description: error instanceof Error ? error.message : "Please try again",
+      })
+    } finally {
+      setTimeout(() => hideLoader(), 800)
+    }
   }
-
+  
   return (
-    <>
-      {loading && <Loader label="Signing in..." /> }
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.3 }}
-        className="space-y-6"
-      >
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Your existing form fields */}
-          <div className="space-y-2">
-            <Label htmlFor="login-email">Email</Label>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="space-y-6"
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="login-email">Email</Label>
+          <Input id="login-email" type="email" placeholder="you@example.com" {...register("email")} />
+          {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="login-password">Password</Label>
+          <div className="relative">
             <Input
-              id="login-email"
-              type="email"
-              placeholder="you@example.com"
-              {...register("email")}
+              id="login-password"
+              type={showPassword ? "text" : "password"}
+              placeholder="••••••••"
+              {...register("password")}
             />
-            {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+            <button
+              type="button"
+              onClick={() => setShowPassword(prev => !prev)}
+              className="absolute right-3 top-2 text-muted-foreground hover:text-foreground"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
           </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="login-password">Password</Label>
-            <div className="relative">
-              <Input
-                id="login-password"
-                type={showPassword ? "text" : "password"}
-                placeholder="••••••••"
-                {...register("password")}
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2 text-muted-foreground hover:text-foreground"
-              >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
-            </div>
-            {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
-          </div>
-
-          <Button variant="solid" type="submit" className="w-full" size="lg" disabled={loading}>
-            {loading ? "Signing in..." : "Sign In"}
-          </Button>
-        </form>
-
-        <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-          </div>
+          {/* </div> */}
+          {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
         </div>
 
-        <div className="flex justify-center w-full">
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={() => console.log("Google Login Failed")}
-            useOneTap
-            theme="outline"
-            size="large"
-            text="continue_with"
-            width="350"
-          />
+        <Button variant="solid" type="submit" className="w-full" size="lg">
+          Sign In
+        </Button>
+      </form>
+
+      <div className="relative my-6">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
         </div>
-      </motion.div>
-    </>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+        </div>
+      </div>
+
+      {/* GoogleLogin with modern props with cookies */}
+      <div className="flex justify-center w-full">
+        <GoogleLogin
+          // onSuccess={handleGoogleSuccess}
+          onError={() => {
+            toast({
+              variant: "destructive",
+              title: "Google Sign-In failed",
+              description: "Please try again",
+            })
+          }}
+          theme="outline"
+          size="large"
+          text="continue_with"
+          shape="rectangular"
+          width="380"
+          logo_alignment="left"
+          useOneTap={false}
+          auto_select={false}
+          cancel_on_tap_outside={true}
+          // prompt={forceReauth ? "select_account" : "none"}
+          onSuccess={(response) => {
+            setForceReauth(false); // Reset after success
+            handleGoogleSuccess(response);
+          }}
+        />
+      </div>
+    </motion.div>
   )
 }
