@@ -1,6 +1,6 @@
-import { Badge } from "@/components/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/avatar"
-import { Card, CardContent } from "@/components/card"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 interface ReplyCardProps {

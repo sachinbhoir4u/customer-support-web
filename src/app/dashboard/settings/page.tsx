@@ -1,8 +1,8 @@
 "use client"
 
-import { TeamSettingsCard } from "@/components/settings/TeamSettingsCard"
-// import { TeamMembersCard } from "@/components/settings/TeamMembersCard"
-import { NotificationPreferencesCard } from "@/components/settings/NotificationPreferencesCard"
+import { TeamSettingsCard } from "@/components/dashboard/settings/TeamSettingsCard"
+// import { TeamMembersCard } from "@/components/dashboard/settings/TeamMembersCard"
+import { NotificationPreferencesCard } from "@/components/dashboard/settings/NotificationPreferencesCard"
 
 export default function SettingsPage() {
   return (

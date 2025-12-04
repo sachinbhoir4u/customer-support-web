@@ -1,10 +1,10 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/card"
-import { Switch } from "@/components/switch"
-import { Label } from "@/components/label"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
 import { Bell, Mail, MessageSquare } from "lucide-react"
-import { useToast } from "@/components/use-toast"
+import { useToast } from "@/components/ui/use-toast"
 
 export function NotificationPreferencesCard() {
   const { toast } = useToast()

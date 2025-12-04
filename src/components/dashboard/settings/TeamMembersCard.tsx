@@ -1,11 +1,11 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/card"
-import { Button } from "@/components/button"
-import { Badge } from "@/components/badge"
-import { Avatar, AvatarFallback } from "@/components/avatar"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { useState } from "react"
-import { useToast } from "@/components/use-toast"
+import { useToast } from "@/components/ui/use-toast"
 
 const members = [
   { id: "1", name: "John Doe", email: "john@acme.com", role: "Admin", status: "active" },

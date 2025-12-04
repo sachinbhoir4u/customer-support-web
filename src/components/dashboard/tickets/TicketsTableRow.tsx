@@ -1,4 +1,4 @@
-import { Badge } from "@/components/badge"
+import { Badge } from "@/components/ui/badge"
 import { useRouter } from "next/navigation"
 
 const statusColors = {

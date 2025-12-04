@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { BrandingSection } from "./components/BrandingSection"
-import AuthCard from "./components/AuthCard"
+import { BrandingSection } from "@/components/auth/BrandingSection"
+import AuthCard from "@/components/auth/AuthCard"
 
 export default function AuthLayout() {
   const [isLogin, setIsLogin] = useState(true)

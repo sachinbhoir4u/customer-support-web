@@ -2,7 +2,7 @@ import {
   LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, 
   CartesianGrid, Tooltip, ResponsiveContainer, Legend 
 } from "recharts"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import type { LineChartData, PieChartData } from "./data"
 
 interface AnalyticsChartsProps {

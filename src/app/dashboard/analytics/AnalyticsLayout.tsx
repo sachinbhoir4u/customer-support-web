@@ -1,15 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/button"
-import { MetricsGrid } from "./components/MetricsGrid"
-import { AnalyticsCharts } from "./components/AnalyticsCharts"
-import { PerformanceLists } from "./components/PerformanceLists"
+import { Button } from "@/components/ui/button"
+import { MetricsGrid } from "@/components/dashboard/analytics/MetricsGrid"
+import { AnalyticsCharts } from "@/components/dashboard/analytics/AnalyticsCharts"
+import { PerformanceLists } from "@/components/dashboard/analytics/PerformanceLists"
 import { cn } from "@/lib/utils"
 import { 
   LINE_CHART_DATA, PIE_CHART_DATA,
   METRICS_DATA, TOP_AGENTS_DATA, COMMON_ISSUES_DATA
-} from "./components/data"
+} from "@/components/dashboard/analytics/data"
 
 type TimeRange = "day" | "week" | "month" | "quarter"
 

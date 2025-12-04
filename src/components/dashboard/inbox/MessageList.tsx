@@ -1,7 +1,7 @@
 "use client"
 
-import { Card } from "@/components/card"
-import { Button } from "@/components/button"
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { Archive, Trash2 } from "lucide-react"
 import MessageCard from "./MessageCard"
 

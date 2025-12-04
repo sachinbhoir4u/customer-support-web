@@ -1,5 +1,5 @@
-import { CardContent, CardTitle, CardDescription } from "@/components/card"
-import { Badge } from "@/components/badge"
+import { CardContent, CardTitle, CardDescription } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 interface TicketMetadataProps {
   title: string

@@ -1,7 +1,7 @@
 "use client"
 
 import SidebarNav from "./SidebarNav"
-import { Button } from "@/components/button"
+import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Settings, LogOut } from "lucide-react"
 import { useSidebar } from "@/context/SidebarContext"

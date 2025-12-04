@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { TrendingUp, TrendingDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
