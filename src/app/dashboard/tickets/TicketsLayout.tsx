@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react";
-import { Card } from "@/components/card";
-import { TicketsHeader } from "./components/TicketsHeader";
-import { TicketsFilters } from "./components/TicketsFilters";
-import { TicketsTable } from "./components/TicketsTable";
-import { TicketsEmptyState } from "./components/TicketsEmptyState";
+import { Card } from "@/components/ui/card";
+import { TicketsHeader } from "@/components/dashboard/tickets/TicketsHeader";
+import { TicketsFilters } from "@/components/dashboard/tickets/TicketsFilters";
+import { TicketsTable } from "@/components/dashboard/tickets/TicketsTable";
+import { TicketsEmptyState } from "@/components/dashboard/tickets/TicketsEmptyState";
 
 const mockTickets = [
   {

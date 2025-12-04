@@ -4,9 +4,9 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Button } from "@/components/button"
-import { Input } from "@/components/input"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeft } from "lucide-react"
 
 export default function NewTicketPage() {

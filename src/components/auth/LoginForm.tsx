@@ -8,13 +8,13 @@ import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Button } from "@/components/button"
-import { Input } from "@/components/input"
-import { Label } from "@/components/label"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Eye, EyeOff } from "lucide-react"
 import { GoogleLogin } from "@react-oauth/google"
 import type { CredentialResponse } from "@react-oauth/google"
-import { Loader } from "@/components/Loader"
+import { Loader } from "@/components/ui/Loader"
 
 // Zod schema
 const loginSchema = z.object({
@@ -39,15 +39,28 @@ export default function LoginForm() {
 
   // Email/Password Login
   const onSubmit = async (data: LoginFormData) => {
-    console.log("Login:", data)
     setLoading(true)
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-
-    // Success → redirect
-    setLoading(false)
-    router.push("/dashboard")
+    
+    try {
+      // Real API call
+      // const response = await fetch("/api/auth/login", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(data)
+      // })
+      
+      // if (!response.ok) throw new Error("Login failed")
+      
+      // Navigate
+      router.push("/dashboard")
+      router.refresh()
+      
+    } catch (error) {
+      console.error("Login error:", error)
+      // Show error toast here
+    } finally {
+      setTimeout(() => setLoading(false), 800)
+    }
   }
 
   // Google Login Success
@@ -58,7 +71,7 @@ export default function LoginForm() {
 
     console.log("Google ID Token:", token)
 
-    // Optional: Send token to your backend here
+    // Send token to your backend here
     // await fetch("/api/auth/google", { method: "POST", body: JSON.stringify({ token }) })
 
     // Redirect on success

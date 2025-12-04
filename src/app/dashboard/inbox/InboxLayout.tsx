@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { InboxFilters } from "./components/InboxFilters"
-import { MessageList } from "./components/MessageList"
+import { InboxFilters } from "@/components/dashboard/inbox/InboxFilters"
+import { MessageList } from "@/components/dashboard/inbox/MessageList"
 
 const mockMessages = [
   {

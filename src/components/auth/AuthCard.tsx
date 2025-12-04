@@ -1,9 +1,9 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import AuthToggle from "./AuthToggle"
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
 import { AnimatePresence } from "framer-motion"
-import { Button } from "@/components/button"
+import { Button } from "@/components/ui/button"
 
 interface AuthCardProps {
   isLogin: boolean

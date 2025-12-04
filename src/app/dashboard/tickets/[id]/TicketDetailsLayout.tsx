@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Card } from "@/components/card"
-import { TicketMetadata } from "./components/TicketMetadata"
-import { ReplyList } from "./components/ReplyList"
-import { ReplyForm } from "./components/ReplyForm"
+import { Card } from "@/components/ui/card"
+import { TicketMetadata } from "@/components/dashboard/tickets/id/TicketMetadata"
+import { ReplyList } from "@/components/dashboard/tickets/id/ReplyList"
+import { ReplyForm } from "@/components/dashboard/tickets/id/ReplyForm"
 
 const mockTicketDetail = {
   id: "TKT-001",

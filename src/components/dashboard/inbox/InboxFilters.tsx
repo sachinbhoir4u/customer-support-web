@@ -1,9 +1,9 @@
 "use client"
 
 import { Search, Filter } from "lucide-react"
-import { Input } from "@/components/input"
-import { Button } from "@/components/button"
-import { Card } from "@/components/card"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 
 interface InboxFiltersProps {
   searchQuery: string

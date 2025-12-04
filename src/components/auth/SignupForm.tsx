@@ -6,11 +6,11 @@ import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Button } from "@/components/button"
-import { Input } from "@/components/input"
-import { Label } from "@/components/label"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Eye, EyeOff } from "lucide-react"
-import { Loader } from "@/components/Loader"
+import { Loader } from "@/components/ui/Loader"
 
 // Stronger password rules
 const signupSchema = z

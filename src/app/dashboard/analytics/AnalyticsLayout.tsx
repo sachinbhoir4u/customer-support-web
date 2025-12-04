@@ -1,15 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/button"
-import { MetricsGrid } from "./components/MetricsGrid"
-import { AnalyticsCharts } from "./components/AnalyticsCharts"
-import { PerformanceLists } from "./components/PerformanceLists"
+import { Button } from "@/components/ui/button"
+import { MetricsGrid } from "@/components/dashboard/analytics/MetricsGrid"
+import { AnalyticsCharts } from "@/components/dashboard/analytics/AnalyticsCharts"
+import { PerformanceLists } from "@/components/dashboard/analytics/PerformanceLists"
 import { cn } from "@/lib/utils"
 import { 
   LINE_CHART_DATA, PIE_CHART_DATA,
   METRICS_DATA, TOP_AGENTS_DATA, COMMON_ISSUES_DATA
-} from "./components/data"
+} from "@/components/dashboard/analytics/data"
 
 type TimeRange = "day" | "week" | "month" | "quarter"
 
@@ -82,60 +82,3 @@ export default function AnalyticsPage() {
     </div>
   )
 }
-
-// "use client"
-
-// import { useState } from "react"
-// import { Button } from "@/components/button"
-// import { MetricsGrid } from "./components/MetricsGrid"
-// import { AnalyticsCharts } from "./components/AnalyticsCharts"
-// import { PerformanceLists } from "./components/PerformanceLists"
-// import {  metrics, topAgents, commonIssues, LINE_CHART_DATA,  PIE_CHART_DATA } from "./components/data"
-
-// export default function AnalyticsPage() {
-//   const [timeRange, setTimeRange] = useState<"day" | "week" | "month" | "quarter">("week")
-
-//   // ✅ DYNAMIC DATA BASED ON TIME RANGE
-//   const currentLineData = LINE_CHART_DATA[timeRange]
-//   const currentPieData = PIE_CHART_DATA[timeRange]
-
-//   return (
-//     <div>
-      // <div className="max-w-7xl mx-auto space-y-6">
-      //   <div className="flex items-center gap-8">
-      //     <h1 className="text-2xl font-bold">Analytics</h1>
-      //     <p className="text-muted-foreground mt-1">Track your support team performance and metrics</p>
-      //   </div>
-        // <div className="bg-white p-4 rounded-2xl space-y-4">
-        //   {/* Time Range Filter */}
-        //   <div className="flex gap-2 flex-wrap">
-        //     {(["day", "week", "month", "quarter"] as const).map((range) => (
-        //       <Button
-        //         key={range}
-        //         variant={timeRange === range ? "default" : "outline"}
-        //         size="sm"
-        //         className="capitalize"
-        //         onClick={() => setTimeRange(range)}
-        //       >
-        //         {range}
-        //       </Button>
-        //     ))}
-        //   </div>
-
-//           {/* Metrics */}
-//           <MetricsGrid metrics={metrics} />
-
-//           {/* Charts - NOW DYNAMIC! */}
-//           <AnalyticsCharts
-//             lineChartData={currentLineData}
-//             pieChartData={currentPieData}
-//             timeRange={timeRange}
-//           />
-
-//           {/* Performance Lists */}
-//           <PerformanceLists topAgents={topAgents} commonIssues={commonIssues} />
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }

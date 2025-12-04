@@ -100,52 +100,6 @@ export const PIE_CHART_DATA = {
   ],
 }
 
-// ... rest of your metrics, topAgents, commonIssues stay the same
-
-
-// export interface LineChartData {
-//   date: string
-//   tickets: number
-//   messages: number
-//   resolved: number
-//   [key: string]: string | number 
-// }
-
-// export interface BarChartData {
-//   channel: string
-//   value: number
-//   [key: string]: string | number
-// }
-
-// export interface PieChartData {
-//   name: string
-//   value: number
-//   [key: string]: string | number
-// }
-
-// export const lineChartData: LineChartData[] = [
-//   { date: "Jan 1", tickets: 24, messages: 40, resolved: 18 },
-//   { date: "Jan 8", tickets: 34, messages: 55, resolved: 24 },
-//   { date: "Jan 15", tickets: 28, messages: 48, resolved: 22 },
-//   { date: "Jan 22", tickets: 42, messages: 68, resolved: 35 },
-//   { date: "Jan 29", tickets: 38, messages: 62, resolved: 32 },
-//   { date: "Feb 5", tickets: 45, messages: 75, resolved: 40 },
-//   { date: "Feb 12", tickets: 52, messages: 88, resolved: 45 },
-// ]
-
-// export const barChartData: BarChartData[] = [
-//   { channel: "Email", value: 340 },
-//   { channel: "Chat", value: 280 },
-//   { channel: "WhatsApp", value: 220 },
-//   { channel: "Twitter", value: 150 },
-// ]
-
-// export const pieChartData: PieChartData[] = [
-//   { name: "Resolved", value: 65 },
-//   { name: "In Progress", value: 20 },
-//   { name: "Open", value: 15 },
-// ]
-
 export const METRICS_DATA = {
   day: [
     { label: "Total Tickets", value: "95", change: 8, trend: "up" as const },
